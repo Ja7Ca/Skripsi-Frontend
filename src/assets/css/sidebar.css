@@ -1,0 +1,76 @@
+.sidebar{
+    position: sticky;
+    top: 0;
+    width: 15em;
+    height: 100vh;
+    padding: 2em 0.5em;
+    background-color: #F9FAFB;
+    box-shadow: 2px 0 200px rgba(0, 0, 0, 0.205);
+}
+
+.side-logo{
+    display: flex;
+    gap: 1em;
+}
+
+.side-logo img{
+    width: 1.5em;
+    margin-left: 1.5em;
+}
+
+.side-logo p{
+    font-size: 1.5em;
+    font-weight: bold;
+    font-family: 'Montserrat';
+}
+
+.side-user{
+    display: flex;
+    align-items: center;
+    padding: 1em 1.25em;
+    background-color: rgba(145, 158, 171, 0.12);
+    margin: 1.5em 0.5em;
+    border-radius: 1em;
+    gap: 1em;
+}
+
+.side-user-name{
+    font-weight: 600;
+    color: #212B36;
+    font-size: 14px;
+}
+
+.side-link{
+    padding: 1em 0;
+    text-decoration: none;
+    color: #637381;
+    display: flex;
+    align-items: center;
+    border-radius: 6px;
+}
+
+.side-link svg{
+    margin: 0 1em;
+    color: #bdc4cb;
+}
+
+.side-link.active{
+    padding: 1em 0;
+    text-decoration: none;
+    color: #637381;
+    display: flex;
+    font-weight: bold;
+    background-color: rgba(145, 158, 171, 0.16)
+}
+
+.side-link:hover{
+    background-color: rgba(145, 158, 171, 0.16)
+}
+
+.side-link.active svg{
+    color: black;
+}
+
+.side-link:hover svg{
+    color: black;
+}

@@ -1,0 +1,175 @@
+*{
+    box-sizing: border-box;
+  }
+
+body{
+    background-color: #f4f6fa;
+}
+
+section{
+    padding: 6.25em 0;
+    width: 100%;
+    /* overflow: auto; */
+}
+
+.container{
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.container-main{
+    width: 95%;
+    max-width: 1240px;
+    margin: 0 auto;
+}
+/* btn */
+.btn-tambah{
+    border: 0px;
+    background-color: green;
+    border-radius: 8px;
+    font-weight: 700;
+    color: white;
+    padding: 0.5em 1em;
+    cursor: pointer;
+}
+/* end btn */
+/* Login */
+.container.login{
+    max-width: 30em;
+    text-align: center;
+    background-color: white;
+    border-radius: 1em;
+    padding: 2em;
+    gap: 1.5em;
+}
+
+.section.login{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: rgb(241, 241, 241);
+}
+
+.login-title{
+    font-size: 1.5em;
+}
+
+.form-login{
+    width: 100%;
+}
+
+.wrap-input{
+    margin-top: 1.5em;
+    width: 28em;
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.section.login input{
+    width: 100%;
+    padding: 1.125em 1em;
+    border-radius: 6px;
+    border: 1px solid rgba(145, 158, 171, 0.32);
+}
+.section.login input:nth-child(2){
+    margin-top: 1.5em;
+}
+
+.btn-login{
+    height: 3em;
+    width: 100%;
+    background-color:#2065D1;
+    border: 0;
+    border-radius: 6px;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    margin-top: 1.5em;
+}
+
+/* End Login */
+
+/* Dashboard */
+.wrap-content{
+    height: 100%;
+    overflow: auto;
+}
+.wrap-main{
+    display: grid;
+    grid-template-columns: auto 1fr;
+    height: 100vh;
+}
+
+.wrap-btn-link{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 2em;
+}
+
+/* Murid */
+
+.wrap-add-murid{
+    margin-bottom: 2em;
+}
+
+/* Form Murid */
+
+#tambahMurid{
+    margin-top: 2em;
+}
+
+.form-input {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    margin-bottom: 2em;
+}
+
+.form-input label{
+    font-size: 1.25em;
+}
+
+.form-input input{
+    width: 98%;
+    max-width: 1170px;
+    padding: 1.125em 1em;
+    border-radius: 6px;
+    border: 1px solid rgba(145, 158, 171, 0.32);
+}
+
+.wrap-input-btn{
+    display: flex;
+    justify-content: space-between;
+    gap: 2em;
+}
+
+.wrap-input-btn button{
+    width: 10em;
+}
+
+.btn-submit{
+    width: 100%;
+    padding: 1em 1em;
+    background-color: #2065D1;
+    border-radius: 16px;
+    border: 0;
+    font-weight: bold;
+    color: white;
+}
+
+/* Input Form */
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
