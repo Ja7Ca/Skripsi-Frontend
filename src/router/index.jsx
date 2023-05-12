@@ -10,43 +10,30 @@ import AddMurid from "../pages/Dashboard/AddMurid";
 import EditMurid from "../pages/Dashboard/EditMurid";
 import Raport from "../pages/Dashboard/Raport";
 import EditRaport from "../pages/Raport/EditRaport";
+import Print from "../pages/Dashboard/print/index";
 
 export default function SetupRouter() {
-    return (
-        <div>
-            <BrowserRouter>
-                <Routes>
-                    <Route path="/" element={<ProtectedRoute />}>
-                        <Route path="/" element={<Login />} />
-                    </Route>
-                    <Route path="/" element={<PrivateRoute />}>
-                        <Route path="/" element={<Sidebar />}>
-                            <Route path="/dashboard" element={<Home />} />
-                            <Route
-                                path="/dashboard/murid"
-                                element={<Murid />}
-                            />
-                            <Route
-                                path="/dashboard/murid/:nisn"
-                                element={<EditMurid />}
-                            />
-                            <Route
-                                path="/dashboard/murid/add"
-                                element={<AddMurid />}
-                            />
-                            <Route
-                                path="/dashboard/raport"
-                                element={<Raport />}
-                            />
-                            <Route
-                                path="/raport/:nisn"
-                                element={<EditRaport />}
-                            />
-                            <Route path="/profile" element={""} />
-                        </Route>
-                    </Route>
-                </Routes>
-            </BrowserRouter>
-        </div>
-    );
+  return (
+    <div>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<ProtectedRoute />}>
+            <Route path="/" element={<Login />} />
+          </Route>
+          <Route path="/" element={<PrivateRoute />}>
+            <Route path="/" element={<Sidebar />}>
+              <Route path="/dashboard" element={<Home />} />
+              <Route path="/dashboard/murid" element={<Murid />} />
+              <Route path="/dashboard/murid/:nisn" element={<EditMurid />} />
+              <Route path="/dashboard/murid/add" element={<AddMurid />} />
+              <Route path="/dashboard/raport" element={<Raport />} />
+              <Route path="/dashboard/print" element={<Print />} />
+              <Route path="/raport/:nisn" element={<EditRaport />} />
+              <Route path="/profile" element={""} />
+            </Route>
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </div>
+  );
 }
