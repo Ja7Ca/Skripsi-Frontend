@@ -20,7 +20,14 @@ import { Pages5 } from "./tables/pages-5";
 import { Pages6 } from "./tables/pages-6";
 import { Cover } from "./tables/cover";
 
-export default function Print() {
+export const Preview = (props) => {
+  const data = {
+    nama: "Dummy Datasss",
+    nisn: "333223",
+    nis: "2013",
+    kelas: "Kelas 1",
+  };
+
   Font.register({
     family: "Inter",
     fonts: [
@@ -37,7 +44,6 @@ export default function Print() {
   });
 
   Font.registerHyphenationCallback((word) => {
-    // Return entire word as unique part
     return [word];
   });
   return (
@@ -49,8 +55,8 @@ export default function Print() {
       <PDFViewer width="100%" height="100%">
         <Document>
           <Page size="A4" style={main.body}>
-            <Cover />
-            <Pages1 />
+            <Cover nama={data.nama} nisn={data.nisn} nis={data.nis} />
+            <Pages1 nama={data.nama} nis={data.nis} kelas={data.kelas} />
             <Pages2 />
             <Pages3 />
             <Pages4 />
@@ -61,4 +67,40 @@ export default function Print() {
       </PDFViewer>
     </div>
   );
-}
+};
+
+export const Download = (props) => {
+  const data = props;
+
+  Font.register({
+    family: "Inter",
+    fonts: [
+      { src: interThin, fontWeight: 100 },
+      { src: interExtraLight, fontWeight: 200 },
+      { src: interLight, fontWeight: 300 },
+      { src: interRegular },
+      { src: interMedium, fontWeight: 500 },
+      { src: interSemiBold, fontWeight: 600 },
+      { src: interBold, fontWeight: 700 },
+      { src: interExtraBold, fontWeight: 800 },
+      { src: interBlack, fontWeight: 900 },
+    ],
+  });
+
+  Font.registerHyphenationCallback((word) => {
+    return [word];
+  });
+  return (
+    <Document>
+      <Page size="A4" style={main.body}>
+        <Cover nama={data.nama} nisn={data.nisn} nis={data.nis} />
+        <Pages1 nama={data.nama} nis={data.nis} kelas={data.kelas} />
+        <Pages2 />
+        <Pages3 />
+        <Pages4 />
+        <Pages5 />
+        <Pages6 />
+      </Page>
+    </Document>
+  );
+};
