@@ -2,7 +2,7 @@ import { cover } from "./table-style";
 import { Text, View, Image } from "@react-pdf/renderer";
 import tutwuri from "../../../../assets/img/tutwuri-min.png";
 
-export const Cover = () => {
+export const Cover = (props) => {
   return (
     <>
       <View style={cover.container}>
@@ -14,11 +14,13 @@ export const Cover = () => {
         <View style={cover.middleContainer}>
           <View style={cover.name}>
             <Text>NAMA PESERTA DIDIK :</Text>
-            <Text>SHOFIRA NUR CAHYATI</Text>
+            <Text>{props.nama}</Text>
           </View>
           <View style={cover.nisn}>
             <Text>NISN/NIS</Text>
-            <Text>33229831032009</Text>
+            <Text>
+              {props.nisn}/{props.nis}
+            </Text>
           </View>
         </View>
 

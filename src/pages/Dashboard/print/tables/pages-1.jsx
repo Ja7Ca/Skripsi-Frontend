@@ -1,7 +1,7 @@
 import { main, tables_b } from "./table-style";
 import { Text, View } from "@react-pdf/renderer";
 
-export const Pages1 = () => {
+export const Pages1 = (props) => {
   const dataset = [
     {
       no: 1,
@@ -38,11 +38,11 @@ export const Pages1 = () => {
         <View style={main.flex_col}>
           <View style={main.row}>
             <Text style={main.label}>Nama Peserta Didik</Text>
-            <Text>: John Doe</Text>
+            <Text>: {props.nama}</Text>
           </View>
           <View style={main.row}>
             <Text style={main.label}>Nomor Induk</Text>
-            <Text>: 1222131</Text>
+            <Text>: {props.nis}</Text>
           </View>
           <View style={main.row}>
             <Text style={main.label}>Nama Sekolah</Text>
@@ -57,7 +57,7 @@ export const Pages1 = () => {
         <View style={main.flex_col}>
           <View style={main.row}>
             <Text style={main.label}>Kelas</Text>
-            <Text>: C</Text>
+            <Text>: {props.kelas}</Text>
           </View>
           <View style={main.row}>
             <Text style={main.label}>Semester</Text>
