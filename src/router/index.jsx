@@ -10,7 +10,7 @@ import AddMurid from "../pages/Dashboard/AddMurid";
 import EditMurid from "../pages/Dashboard/EditMurid";
 import Raport from "../pages/Dashboard/Raport";
 import EditRaport from "../pages/Raport/EditRaport";
-import Print from "../pages/Dashboard/print/index";
+import { Preview } from "../pages/Dashboard/print/pdf-index";
 
 export default function SetupRouter() {
   return (
@@ -27,7 +27,7 @@ export default function SetupRouter() {
               <Route path="/dashboard/murid/:nisn" element={<EditMurid />} />
               <Route path="/dashboard/murid/add" element={<AddMurid />} />
               <Route path="/dashboard/raport" element={<Raport />} />
-              <Route path="/dashboard/print" element={<Print />} />
+              <Route path="/dashboard/print" element={<Preview />} />
               <Route path="/raport/:nisn" element={<EditRaport />} />
               <Route path="/profile" element={""} />
             </Route>
