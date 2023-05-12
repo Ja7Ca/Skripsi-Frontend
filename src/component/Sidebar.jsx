@@ -69,7 +69,13 @@ const Sidebar = () => {
             </svg>
             Murid
           </Link>
-          <Link className="side-link" to={"/dashboard/raport"}>
+          <Link
+            className={active === "raport" ? "side-link active" : "side-link"}
+            onClick={() => {
+              setActive("raport");
+            }}
+            to={"/dashboard/raport"}
+          >
             <svg
               width="22"
               height="22"
