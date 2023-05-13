@@ -34,7 +34,7 @@ const Sidebar = () => {
                         className={
                             active === "" ? "side-link active" : "side-link"
                         }
-                        to={"/"}
+                        to={"/dashboard"}
                         onClick={() => setActive("")}>
                         <svg
                             width="22"

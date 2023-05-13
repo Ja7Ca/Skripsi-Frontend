@@ -11,10 +11,13 @@ import {
     useGetNilaiQuery,
     useEditNilaiMutation,
 } from "../../store/features/nilai/nilaiSlice";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
+import Swal from "sweetalert2";
 
 const EditRaport = () => {
+    const navigate = useNavigate();
     const { nisn } = useParams();
+    console.log(nisn);
     const [loading, setLoading] = useState(true);
     const [edit] = useEditNilaiMutation();
     const [form, setForm] = useState({
@@ -29,7 +32,7 @@ const EditRaport = () => {
     });
     let semNilai = {};
 
-    const { data: nilai, isSuccess } = useGetNilaiQuery("11100031231", {
+    const { data: nilai, isSuccess } = useGetNilaiQuery(nisn, {
         refetchOnMountOrArgChange: true,
     });
 
@@ -55,7 +58,6 @@ const EditRaport = () => {
 
     const onChange = (e) => {
         e.preventDefault();
-        console.log(e.target.attributes.getNamedItem("mapel").value);
         if (e.target.value == "") {
             semNilai[e.target.attributes.getNamedItem("mapel").value][
                 e.target.name
@@ -87,14 +89,25 @@ const EditRaport = () => {
 
     const onSubmit = (e) => {
         e.preventDefault();
-        edit({ nilai: form, nisn })
-            .unwrap()
-            .then((result) => {
-                console.log("success");
-            })
-            .catch((error) => {
-                console.log(error.message);
-            });
+        Swal.fire({
+            icon: "question",
+            title: `Yakin untuk mengubah data?`,
+            showCancelButton: true,
+            confirmButtonText: "Ubah",
+        }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
+                edit({ nilai: form, nisn })
+                    .unwrap()
+                    .then((result) => {
+                        Swal.fire("Saved!", "", "success");
+                        navigate("/dashboard/murid");
+                    })
+                    .catch((error) => {
+                        console.log(error.message);
+                    });
+            }
+        });
     };
     return (
         <form onSubmit={onSubmit}>
