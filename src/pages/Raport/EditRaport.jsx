@@ -8,21 +8,19 @@ import {
 import { useEffect, useState } from "react";
 
 import {
-    useGetNilaiQuery,
-    useEditNilaiMutation,
-} from "../../store/features/nilai/nilaiSlice";
-import {
     useGetSikapQuery,
     useGetSaranQuery,
     useGetPrestasiQuery,
     useGetKehadiranQuery,
 } from "../../store/features/sikap/sikapSlice";
 import { useGetEskulQuery } from "../../store/features/eskul/eskulSlice";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import Swal from "sweetalert2";
 
 const EditRaport = () => {
+    const navigate = useNavigate();
     const { nisn } = useParams();
+    console.log(nisn);
     const [loading, setLoading] = useState(true);
     const [edit] = useEditNilaiMutation();
     const [formSaran, setFormSaran] = useState("");
@@ -61,6 +59,7 @@ const EditRaport = () => {
         },
     });
     let semNilai = {};
+
 
     const { data: nilai } = useGetNilaiQuery(nisn, {
         refetchOnMountOrArgChange: true,
