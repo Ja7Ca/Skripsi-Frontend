@@ -1,10 +1,10 @@
 import {
-  Button,
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableRow,
+    Button,
+    Table,
+    TableBody,
+    TableCell,
+    TableHead,
+    TableRow,
 } from "@mui/material";
 
 import _ from "lodash";
@@ -15,97 +15,100 @@ import { PDFDownloadLink } from "@react-pdf/renderer";
 import { Download } from "./print/pdf-index";
 
 const Raport = () => {
-  const { data: siswa, isSuccess } = useGetSiswaQuery(
-    {},
-    { refetchOnMountOrArgChange: true }
-  );
+    const { data: siswa, isSuccess } = useGetSiswaQuery(
+        {},
+        { refetchOnMountOrArgChange: true }
+    );
 
-  return (
-    <>
-      <Table>
-        <TableHead>
-          <TableRow sx={{ bgcolor: "white" }}>
-            <TableCell>NO</TableCell>
-            <TableCell>Nama</TableCell>
-            <TableCell>NISN</TableCell>
-            <TableCell>Raport</TableCell>
-            <TableCell></TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {!_.isEmpty(siswa) &&
-            siswa.map((el, index) => (
-              <TableRow
-                key={index}
-                sx={{
-                  bgcolor:
-                    index % 2 === 0
-                      ? "rgba(145, 158, 171, 0.16)"
-                      : "rgba(145, 158, 171, 0.16)",
-                }}
-              >
-                <TableCell>{index + 1}</TableCell>
-                <TableCell>{el.nama}</TableCell>
-                <TableCell>{el.nisn}</TableCell>
-                <TableCell>
-                  <Link to={`/raport/${el.nisn}`}>
-                    <svg
-                      width="22"
-                      height="22"
-                      viewBox="0 0 22 22"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M19.25 4.58333C18.2325 4.2625 17.1142 4.125 16.0417 4.125C14.2542 4.125 12.3292 4.49167 11 5.5C9.67084 4.49167 7.74584 4.125 5.95834 4.125C4.17083 4.125 2.24583 4.49167 0.916668 5.5V18.9292C0.916668 19.1583 1.14583 19.3875 1.375 19.3875C1.46667 19.3875 1.5125 19.3417 1.60417 19.3417C2.84167 18.7458 4.62917 18.3333 5.95834 18.3333C7.74584 18.3333 9.67084 18.7 11 19.7083C12.2375 18.9292 14.4833 18.3333 16.0417 18.3333C17.5542 18.3333 19.1125 18.6083 20.3958 19.2958C20.4875 19.3417 20.5333 19.3417 20.625 19.3417C20.8542 19.3417 21.0833 19.1125 21.0833 18.8833V5.5C20.5333 5.0875 19.9375 4.8125 19.25 4.58333ZM19.25 16.9583C18.2417 16.6375 17.1417 16.5 16.0417 16.5C14.4833 16.5 12.2375 17.0958 11 17.875V7.33333C12.2375 6.55417 14.4833 5.95833 16.0417 5.95833C17.1417 5.95833 18.2417 6.09583 19.25 6.41667V16.9583Z"
-                        fill="currentColor"
-                      />
-                      <path
-                        d="M16.0417 9.625C16.8483 9.625 17.6275 9.7075 18.3333 9.86333V8.47C17.6092 8.3325 16.83 8.25 16.0417 8.25C14.4833 8.25 13.0717 8.51583 11.9167 9.01083V10.5325C12.9525 9.94583 14.3917 9.625 16.0417 9.625Z"
-                        fill="currentColor"
-                      />
-                      <path
-                        d="M11.9167 11.4492V12.9708C12.9525 12.3842 14.3917 12.0633 16.0417 12.0633C16.8483 12.0633 17.6275 12.1458 18.3333 12.3017V10.9083C17.6092 10.7708 16.83 10.6883 16.0417 10.6883C14.4833 10.6883 13.0717 10.9633 11.9167 11.4492Z"
-                        fill="currentColor"
-                      />
-                      <path
-                        d="M16.0417 13.1358C14.4833 13.1358 13.0717 13.4017 11.9167 13.8967V15.4183C12.9525 14.8317 14.3917 14.5108 16.0417 14.5108C16.8483 14.5108 17.6275 14.5933 18.3333 14.7492V13.3558C17.6092 13.2092 16.83 13.1358 16.0417 13.1358Z"
-                        fill="currentColor"
-                      />
-                    </svg>
-                  </Link>
-                </TableCell>
-                <TableCell>
-                  <Button variant="contained" size="small">
-                    <PDFDownloadLink
-                      document={
-                        <Download
-                          nama={el.nama}
-                          nisn={el.nisn}
-                          nis={el.nis}
-                          kelas={el.kelas.nama}
-                        />
-                      }
-                      fileName={`${el.nama}.pdf`}
-                      style={{
-                        textDecoration: "none",
-                        color: "white",
-                        textTransform: "none",
-                      }}
-                    >
-                      {({ blob, url, loading, error }) =>
-                        loading ? "Memuat document..." : "Unduh Raport"
-                      }
-                    </PDFDownloadLink>
-                  </Button>
-                </TableCell>
-              </TableRow>
-            ))}
-        </TableBody>
-      </Table>
-      <></>
-    </>
-  );
+    return (
+        <>
+            <Table>
+                <TableHead>
+                    <TableRow sx={{ bgcolor: "white" }}>
+                        <TableCell>NO</TableCell>
+                        <TableCell>Nama</TableCell>
+                        <TableCell>NISN</TableCell>
+                        <TableCell>Raport Semester 1</TableCell>
+                        <TableCell>Raport Semester 2</TableCell>
+                        {/* <TableCell></TableCell> */}
+                    </TableRow>
+                </TableHead>
+                <TableBody>
+                    {!_.isEmpty(siswa) &&
+                        siswa.map((el, index) => (
+                            <TableRow
+                                key={index}
+                                sx={{
+                                    bgcolor:
+                                        index % 2 === 0
+                                            ? "rgba(145, 158, 171, 0.16)"
+                                            : "rgba(145, 158, 171, 0.16)",
+                                }}>
+                                <TableCell>{index + 1}</TableCell>
+                                <TableCell>{el.nama}</TableCell>
+                                <TableCell>{el.nisn}</TableCell>
+                                <TableCell>
+                                    <Link to={`/dashboard/print/${el.nisn}/1`}>
+                                        <svg
+                                            width="24"
+                                            height="24"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M3 3V21H21V3H3ZM19 19H5V7H19V19ZM13.5 13C13.5 13.83 12.83 14.5 12 14.5C11.17 14.5 10.5 13.83 10.5 13C10.5 12.17 11.17 11.5 12 11.5C12.83 11.5 13.5 12.17 13.5 13ZM12 9C9.27 9 6.94 10.66 6 13C6.94 15.34 9.27 17 12 17C14.73 17 17.06 15.34 18 13C17.06 10.66 14.73 9 12 9ZM12 15.5C11.337 15.5 10.7011 15.2366 10.2322 14.7678C9.76339 14.2989 9.5 13.663 9.5 13C9.5 12.337 9.76339 11.7011 10.2322 11.2322C10.7011 10.7634 11.337 10.5 12 10.5C12.663 10.5 13.2989 10.7634 13.7678 11.2322C14.2366 11.7011 14.5 12.337 14.5 13C14.5 13.663 14.2366 14.2989 13.7678 14.7678C13.2989 15.2366 12.663 15.5 12 15.5Z"
+                                                fill="black"
+                                            />
+                                        </svg>
+                                    </Link>
+                                </TableCell>
+                                <TableCell>
+                                    <Link to={`/dashboard/print/${el.nisn}/2`}>
+                                        <svg
+                                            width="24"
+                                            height="24"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M3 3V21H21V3H3ZM19 19H5V7H19V19ZM13.5 13C13.5 13.83 12.83 14.5 12 14.5C11.17 14.5 10.5 13.83 10.5 13C10.5 12.17 11.17 11.5 12 11.5C12.83 11.5 13.5 12.17 13.5 13ZM12 9C9.27 9 6.94 10.66 6 13C6.94 15.34 9.27 17 12 17C14.73 17 17.06 15.34 18 13C17.06 10.66 14.73 9 12 9ZM12 15.5C11.337 15.5 10.7011 15.2366 10.2322 14.7678C9.76339 14.2989 9.5 13.663 9.5 13C9.5 12.337 9.76339 11.7011 10.2322 11.2322C10.7011 10.7634 11.337 10.5 12 10.5C12.663 10.5 13.2989 10.7634 13.7678 11.2322C14.2366 11.7011 14.5 12.337 14.5 13C14.5 13.663 14.2366 14.2989 13.7678 14.7678C13.2989 15.2366 12.663 15.5 12 15.5Z"
+                                                fill="black"
+                                            />
+                                        </svg>
+                                    </Link>
+                                </TableCell>
+                                {/* <TableCell>
+                                    <Button variant="contained" size="small">
+                                        <PDFDownloadLink
+                                            document={
+                                                <Download
+                                                    nama={el.nama}
+                                                    nisn={el.nisn}
+                                                    nis={el.nis}
+                                                    kelas={el.kelas.nama}
+                                                />
+                                            }
+                                            fileName={`${el.nama}.pdf`}
+                                            style={{
+                                                textDecoration: "none",
+                                                color: "white",
+                                                textTransform: "none",
+                                            }}>
+                                            {({ blob, url, loading, error }) =>
+                                                loading
+                                                    ? "Memuat document..."
+                                                    : "Unduh Raport"
+                                            }
+                                        </PDFDownloadLink>
+                                    </Button>
+                                </TableCell> */}
+                            </TableRow>
+                        ))}
+                </TableBody>
+            </Table>
+            <></>
+        </>
+    );
 };
 
 export default Raport;

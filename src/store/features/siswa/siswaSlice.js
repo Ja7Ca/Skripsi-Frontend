@@ -97,6 +97,18 @@ export const siswaSlice = createApi({
             },
             providesTags: ["Siswa"],
         }),
+        addUploadFile: builder.mutation({
+            query: (data) => ({
+                url: `upload-file`,
+                method: "POST",
+                headers: { Autorization: Auth.getAccessToken() },
+                body: { dataMurid: data },
+            }),
+            transformResponse(response) {
+                return response.data;
+            },
+            providesTags: ["Siswa"],
+        }),
     }),
 });
 export const {
@@ -107,4 +119,5 @@ export const {
     useGetOneSiswaQuery,
     useDeleteSiswaMutation,
     useGuruEditSiswaMutation,
+    useAddUploadFileMutation,
 } = siswaSlice;

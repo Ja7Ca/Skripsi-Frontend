@@ -47,7 +47,116 @@ export const userSlice = createApi({
             transformResponse: (response) => response,
             providesTags: ["Auth"],
         }),
+        forgot: builder.mutation({
+            query: (data) => ({
+                url: "/forgot",
+                method: "POST",
+                body: data,
+            }),
+            transformResponse: (response) => response,
+            providesTags: ["Auth"],
+        }),
+        changeForgotPass: builder.mutation({
+            query: (data) => ({
+                url: "/changeforgotpass",
+                method: "PUT",
+                body: data,
+            }),
+            transformResponse: (response) => response,
+            providesTags: ["Auth"],
+        }),
+        getUserKey: builder.query({
+            query: (key) => ({
+                url: `/getuserkey/${key}`,
+                method: "GET",
+            }),
+            transformResponse: (response) => response,
+            providesTags: ["Auth"],
+        }),
+        updateUser: builder.mutation({
+            query: (data) => ({
+                url: "/updateuser",
+                method: "PUT",
+                body: data,
+                headers: { Autorization: Auth.getAccessToken() },
+            }),
+            transformResponse: (response) => response,
+            providesTags: ["Auth"],
+        }),
+        getAllUser: builder.query({
+            query: () => ({
+                url: `/user`,
+                method: "GET",
+                headers: { Autorization: Auth.getAccessToken() },
+            }),
+            transformResponse: (response) => response,
+            providesTags: ["Auth"],
+        }),
+        getOneUser: builder.query({
+            query: (id) => ({
+                url: `/user/${id}`,
+                method: "GET",
+                headers: { Autorization: Auth.getAccessToken() },
+            }),
+            transformResponse: (response) => response,
+            providesTags: ["Auth"],
+        }),
+        addUser: builder.mutation({
+            query: (data) => ({
+                url: "/user",
+                method: "POST",
+                body: data,
+                headers: { Autorization: Auth.getAccessToken() },
+            }),
+            transformResponse: (response) => response,
+            providesTags: ["Auth"],
+        }),
+        cekUsername: builder.query({
+            query: (username) => ({
+                url: `/cek-user/${username}`,
+                method: "GET",
+                headers: { Autorization: Auth.getAccessToken() },
+            }),
+            transformResponse: (response) => response,
+            providesTags: ["Auth"],
+        }),
+        deleteUser: builder.mutation({
+            query: (id) => ({
+                url: `user/${id}`,
+                method: "DELETE",
+                headers: { Autorization: Auth.getAccessToken() },
+            }),
+            transformResponse(response) {
+                return response.data;
+            },
+            providesTags: ["Auth"],
+        }),
+        updatePassUser: builder.mutation({
+            query: (data) => ({
+                url: `user/updatePass`,
+                method: "POST",
+                headers: { Autorization: Auth.getAccessToken() },
+                body: data,
+            }),
+            transformResponse(response) {
+                return response.data;
+            },
+            providesTags: ["Auth"],
+        }),
     }),
 });
-export const { useLoginMutation, useRegisterMutation, useWhoamiQuery } =
-    userSlice;
+export const {
+    useLoginMutation,
+    useRegisterMutation,
+    useWhoamiQuery,
+    useForgotMutation,
+    useChangeForgotPassMutation,
+    useGetUserKeyQuery,
+    useUpdateUserMutation,
+    useGetAllUserQuery,
+    useGetOneUserQuery,
+    useAddUserMutation,
+    useLazyCekUsernameQuery,
+    useDeleteUserMutation,
+    useUpdatePassUserMutation,
+} = userSlice;

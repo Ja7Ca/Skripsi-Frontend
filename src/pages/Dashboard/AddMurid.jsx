@@ -94,7 +94,6 @@ const AddMurid = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(form, errorMsg);
         if (
             !errorMsg.nama &&
             !errorMsg.nis &&
@@ -129,20 +128,41 @@ const AddMurid = () => {
                         });
                     });
                 } else {
-                    Swal.fire({
-                        icon: "warning",
-                        title: "Kesalahan Inputan",
-                        text: "Form harus terisi dengan benar",
-                    });
+                    if (errorMsg.nisn && errorMsg.nis) {
+                        Swal.fire({
+                            icon: "warning",
+                            title: "Kesalahan Inputan",
+                            text: "NISN dan NIS harus tervalidasi",
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: "warning",
+                            title: "Kesalahan Inputan",
+                            text: "Form harus terisi dengan benar",
+                        });
+                    }
                 }
             } else {
+                Swal.fire({
+                    icon: "warning",
+                    title: "Kesalahan Inputan",
+                    text: "Form harus terisi dengan benar",
+                });
             }
         } else {
-            Swal.fire({
-                icon: "warning",
-                title: "Kesalahan Inputan",
-                text: "Form harus terisi",
-            });
+            if (errorMsg.nisn && errorMsg.nis) {
+                Swal.fire({
+                    icon: "warning",
+                    title: "Kesalahan Inputan",
+                    text: "NISN dan NIS harus tervalidasi",
+                });
+            } else {
+                Swal.fire({
+                    icon: "warning",
+                    title: "Kesalahan Inputan",
+                    text: "Form harus terisi dengan benar",
+                });
+            }
         }
     };
 
@@ -153,7 +173,9 @@ const AddMurid = () => {
             </center>
             <form id="tambahMurid">
                 <div className="form-input">
-                    <label for="nisn">NISN</label>
+                    <label for="nisn">
+                        NISN <span style={{ color: "red" }}>*</span>
+                    </label>
                     <div className="wrap-input-btn">
                         <input
                             type="text"
@@ -172,7 +194,9 @@ const AddMurid = () => {
                     </div>
                 </div>
                 <div className="form-input">
-                    <label for="nama">Nama</label>
+                    <label for="nama">
+                        Nama <span style={{ color: "red" }}>*</span>
+                    </label>
                     <input
                         type="text"
                         name="nama"
@@ -182,7 +206,9 @@ const AddMurid = () => {
                     />
                 </div>
                 <div className="form-input">
-                    <label for="nis">NIS</label>
+                    <label for="nis">
+                        NIS <span style={{ color: "red" }}>*</span>
+                    </label>
                     <div className="wrap-input-btn">
                         <input
                             type="text"
@@ -201,7 +227,9 @@ const AddMurid = () => {
                     </div>
                 </div>
                 <div className="form-input">
-                    <label for="tempat">Tempat Lahir</label>
+                    <label for="tempat">
+                        Tempat Lahir <span style={{ color: "red" }}>*</span>
+                    </label>
                     <input
                         type="text"
                         name="tempat"
@@ -211,7 +239,9 @@ const AddMurid = () => {
                     />
                 </div>
                 <div className="form-input">
-                    <label for="tanggal">Tanggal Lahir</label>
+                    <label for="tanggal">
+                        Tanggal Lahir <span style={{ color: "red" }}>*</span>
+                    </label>
                     <input
                         type="date"
                         name="tanggal"

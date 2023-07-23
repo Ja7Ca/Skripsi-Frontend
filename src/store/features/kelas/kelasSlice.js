@@ -2,8 +2,8 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import Auth from "../../../utils/Auth";
 import CONST from "../../../utils/constants";
 
-export const jobSlice = createApi({
-    reducerPath: "jobSlice",
+export const kelasSlice = createApi({
+    reducerPath: "kelasSlice",
     baseQuery: fetchBaseQuery({
         baseUrl: CONST.BASE_URL,
         prepareHeaders: (headers) => {
@@ -16,26 +16,26 @@ export const jobSlice = createApi({
             return headers;
         },
     }),
-    tagTypes: ["Job"],
+    tagTypes: ["Kelas"],
     endpoints: (builder) => ({
-        getJob: builder.query({
-            query: (pegawai_id) => ({
-                url: `/job/${pegawai_id}`,
+        getKelas: builder.query({
+            query: () => ({
+                url: `/kelas`,
                 method: "GET",
                 headers: { Autorization: Auth.getAccessToken() },
             }),
             transformResponse: (response) => response,
-            providesTags: ["Job"],
+            providesTags: ["Kelas"],
         }),
-        getJobDate: builder.query({
-            query: ({ pegawai_id, start, end }) => ({
-                url: `/job-date/${pegawai_id}?start=${start}&end=${end}`,
+        getKelasKosong: builder.query({
+            query: () => ({
+                url: `/kelas-kosong`,
                 method: "GET",
                 headers: { Autorization: Auth.getAccessToken() },
             }),
             transformResponse: (response) => response,
-            providesTags: ["Job"],
+            providesTags: ["Kelas"],
         }),
     }),
 });
-export const { useLazyGetJobQuery, useLazyGetJobDateQuery } = jobSlice;
+export const { useGetKelasQuery, useGetKelasKosongQuery } = kelasSlice;

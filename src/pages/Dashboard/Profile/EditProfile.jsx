@@ -1,49 +1,41 @@
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import {
-    useLazyCekNisQuery,
-    useLazyCekNisnQuery,
-    useGetOneSiswaQuery,
-    useGuruEditSiswaMutation,
-} from "../../store/features/siswa/siswaSlice";
-import check from "../../assets/img/check.png";
+    useWhoamiQuery,
+    useUpdateUserMutation,
+} from "../../../store/features/user/userSlice";
 import { useNavigate, useParams } from "react-router";
+import { Link } from "react-router-dom";
 
-const EditMurid = () => {
-    let regexAlpabet = /^[A-Z a-z]+$/;
+const EditProfile = () => {
+    let regexAlpabet = /^[A-Z a-z , .]+$/;
+    let regexEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
 
     const navigate = useNavigate();
 
     const { nisn } = useParams();
 
-    const [getNisn, resNisn] = useLazyCekNisnQuery();
-    const [getNis, resNis] = useLazyCekNisQuery();
-    const { data: siswa, isSuccess } = useGetOneSiswaQuery(nisn);
-    const [edit] = useGuruEditSiswaMutation();
+    const { data: user } = useWhoamiQuery();
+    const [edit] = useUpdateUserMutation();
 
     const [form, setForm] = useState({
         nama: "",
-        tempat: "",
-        tanggal: "",
-        nisn: "",
+        nip: "",
+        email: "",
     });
 
-    if (siswa && !form.nama && !form.tempat && !form.tanggal) {
-        console.log(siswa);
+    if (user && !form.nama && !form.nip && !form.email) {
         setForm({
-            nama: siswa.nama,
-            tempat: siswa.tempatLahir,
-            tanggal: siswa.tanggalLahir,
-            nisn: siswa.nisn,
+            nama: user.nama,
+            nip: user.nip,
+            email: user.email,
         });
     }
 
     const [errorMsg, setErrorMsg] = useState({
-        nisn: false,
+        email: "",
         nama: "",
-        nis: false,
-        tempat: "",
-        tanggal: "",
+        nip: "",
     });
 
     const handleChange = async (e) => {
@@ -54,11 +46,15 @@ const EditMurid = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log(form, errorMsg);
-        if (!errorMsg.nama && !errorMsg.tempat && !errorMsg.tanggal) {
-            if (form.nama && form.tempat && form.tanggal && form.nisn) {
+        if (!errorMsg.nama && !errorMsg.nip && !errorMsg.email) {
+            if (form.nama && form.nip && form.email) {
+                console.log(
+                    form.nama.match(regexAlpabet),
+                    form.email.match(regexEmail)
+                );
                 if (
                     form.nama.match(regexAlpabet) &&
-                    form.tempat.match(regexAlpabet)
+                    form.email.match(regexEmail)
                 ) {
                     Swal.fire({
                         icon: "question",
@@ -71,8 +67,8 @@ const EditMurid = () => {
                             edit(form)
                                 .unwrap()
                                 .then((result) => {
+                                    window.location.reload();
                                     Swal.fire("Saved!", "", "success");
-                                    navigate("/dashboard/murid");
                                 })
                                 .catch((error) => {
                                     console.log(error.message);
@@ -87,6 +83,11 @@ const EditMurid = () => {
                     });
                 }
             } else {
+                Swal.fire({
+                    icon: "warning",
+                    title: "Kesalahan Inputan",
+                    text: "Form harus terisi",
+                });
             }
         } else {
             Swal.fire({
@@ -100,11 +101,11 @@ const EditMurid = () => {
     return (
         <div className="contanier">
             <center>
-                <h1 className="form-title">Edit Murid</h1>
+                <h1 className="form-title">Edit Profile</h1>
             </center>
             <form id="tambahMurid">
                 <div className="form-input">
-                    <label for="nama">Nama</label>
+                    <label for="nama">Nama dan Gelar</label>
                     <input
                         type="text"
                         name="nama"
@@ -114,21 +115,21 @@ const EditMurid = () => {
                     />
                 </div>
                 <div className="form-input">
-                    <label for="tempat">Tempat Lahir</label>
+                    <label for="nip">nip</label>
                     <input
                         type="text"
-                        name="tempat"
-                        value={form.tempat}
+                        name="nip"
+                        value={form.nip}
                         onChange={handleChange}
                         required
                     />
                 </div>
                 <div className="form-input">
-                    <label for="tanggal">Tanggal Lahir</label>
+                    <label for="email">Email</label>
                     <input
-                        type="date"
-                        name="tanggal"
-                        value={form.tanggal}
+                        type="email"
+                        name="email"
+                        value={form.email}
                         onChange={handleChange}
                         required
                     />
@@ -140,8 +141,21 @@ const EditMurid = () => {
                     Edit
                 </button>
             </form>
+            {user ? (
+                user.username == "admin" ? (
+                    <center style={{ marginTop: "1em" }}>
+                        <Link to={`/dashboard/user/${user.username}`}>
+                            Ganti Password?
+                        </Link>
+                    </center>
+                ) : (
+                    ""
+                )
+            ) : (
+                ""
+            )}
         </div>
     );
 };
 
-export default EditMurid;
+export default EditProfile;

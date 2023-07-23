@@ -2,8 +2,8 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import Auth from "../../../utils/Auth";
 import CONST from "../../../utils/constants";
 
-export const pegawaiSlice = createApi({
-    reducerPath: "pegawaiSlice",
+export const eskulSlice = createApi({
+    reducerPath: "eskulSlice",
     baseQuery: fetchBaseQuery({
         baseUrl: CONST.BASE_URL,
         prepareHeaders: (headers) => {
@@ -16,17 +16,17 @@ export const pegawaiSlice = createApi({
             return headers;
         },
     }),
-    tagTypes: ["Pegawai"],
+    tagTypes: ["Eskul"],
     endpoints: (builder) => ({
-        getPegawai: builder.query({
-            query: () => ({
-                url: "/pegawai",
+        getEskul: builder.query({
+            query: (nisn) => ({
+                url: `/eskul/${nisn}`,
                 method: "GET",
                 headers: { Autorization: Auth.getAccessToken() },
             }),
             transformResponse: (response) => response,
-            providesTags: ["pegawai"],
+            providesTags: ["Eskul"],
         }),
     }),
 });
-export const { useGetPegawaiQuery } = pegawaiSlice;
+export const { useGetEskulQuery } = eskulSlice;

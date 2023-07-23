@@ -62,7 +62,6 @@ section{
 
 .wrap-input{
     margin-top: 1.5em;
-    width: 28em;
     display: flex;
     align-items: stretch;
     justify-content: center;
@@ -134,8 +133,7 @@ section{
 }
 
 .form-input input{
-    width: 98%;
-    max-width: 1170px;
+    width: 100%;
     padding: 1.125em 1em;
     border-radius: 6px;
     border: 1px solid rgba(145, 158, 171, 0.32);
@@ -162,6 +160,19 @@ section{
 }
 
 /* Input Form */
+select{
+    padding: 1.125em 1em;
+    border-radius: 6px;
+    border: 1px solid rgba(145, 158, 171, 0.32);
+}
+
+#rapot textarea, #rapot .raport-input{
+    min-width: 100%;
+    max-width: 100%;
+    padding: 1.125em 1em;
+    border-radius: 6px;
+    border: 1px solid rgba(145, 158, 171, 0.32);
+}
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -172,4 +183,9 @@ input::-webkit-inner-spin-button {
 /* Firefox */
 input[type=number] {
   -moz-appearance: textfield;
+}
+
+/* Pop UP */
+.popup-content{
+    border-radius: 1em
 }
