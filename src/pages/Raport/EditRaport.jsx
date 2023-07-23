@@ -8,6 +8,11 @@ import {
 import { useEffect, useState } from "react";
 
 import {
+    useGetNilaiQuery,
+    useEditNilaiMutation,
+} from "../../store/features/nilai/nilaiSlice";
+
+import {
     useGetSikapQuery,
     useGetSaranQuery,
     useGetPrestasiQuery,
@@ -59,7 +64,6 @@ const EditRaport = () => {
         },
     });
     let semNilai = {};
-
 
     const { data: nilai } = useGetNilaiQuery(nisn, {
         refetchOnMountOrArgChange: true,
