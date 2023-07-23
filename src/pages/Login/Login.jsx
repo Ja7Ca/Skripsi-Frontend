@@ -18,37 +18,46 @@ const Login = () => {
         if (regex.test(username) || regex.test(password)) {
             setErrorMsg("Tidak boleh ada character spesial");
         }
-
+        console.log(username, password);
+        console.log(errorMsg);
         if (!errorMsg) {
-            await login({ username, password })
+            login({ username, password })
                 .unwrap()
                 .then((result) => {
-                    if (!isLoading) {
-                        console.log(result);
-                        if (result.success) {
-                            navigate("/dashboard");
-                            Swal.fire({
-                                icon: "success",
-                                title: "Sukses Login",
-                                text: "Selamat Datang",
-                            });
-                        } else {
-                            Swal.fire({
-                                icon: "error",
-                                title: "Gagal Login",
-                                text: "User atau password salah",
-                            });
-                        }
+                    console.log(result);
+                    if (result.success) {
+                        navigate("/dashboard");
+                        Swal.fire({
+                            icon: "success",
+                            title: "Sukses Login",
+                            text: "Selamat Datang",
+                        });
+                    } else {
+                        setUsername("");
+                        setPassword("");
+                        setErrorMsg("");
+                        Swal.fire({
+                            icon: "error",
+                            title: "Gagal Login",
+                            text: "User atau password salah",
+                        });
                     }
                 })
                 .catch((err) => {
                     console.log(err);
                     console.log("Something Is Wrong");
                 });
+        } else {
+            setErrorMsg("");
+            Swal.fire({
+                icon: "error",
+                title: "Form Error",
+                text: "Tidak Boleh Ada yang kosong",
+            });
         }
     };
 
-    const [login, { isLoading }] = useLoginMutation();
+    const [login] = useLoginMutation();
 
     return (
         <div className="section login">
@@ -62,6 +71,7 @@ const Login = () => {
                             placeholder="Username"
                             value={username}
                             onChange={(e) => setUsername(e.target.value)}
+                            required
                         />
                         <input
                             type="password"
@@ -69,11 +79,15 @@ const Login = () => {
                             placeholder="Password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
+                            required
                         />
                     </div>
                     <button type="submit" className="btn-login">
                         Login
                     </button>
+                    <center style={{ marginTop: "1em" }}>
+                        <Link to={"/forgot"}>Forgot password?</Link>
+                    </center>
                 </form>
             </div>
         </div>
